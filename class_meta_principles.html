@@ -1,0 +1,859 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2016-03-30 Wed 17:01 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="viewport" content="width=device-width, initial-scale=1" />
+<title></title>
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="Gary Klindt" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="http://www.pirilampo.org/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="http://www.pirilampo.org/styles/readtheorg/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="http://www.pirilampo.org/styles/lib/js/jquery.stickytableheaders.js"></script>
+<script type="text/javascript" src="http://www.pirilampo.org/styles/readtheorg/js/readtheorg.js"></script>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgheadline6">1. introduction to classes</a>
+<ul>
+<li><a href="#orgheadline1">1.1. the technique</a></li>
+<li><a href="#orgheadline2">1.2. half useful example</a></li>
+<li><a href="#orgheadline4">1.3. when not to use a class</a>
+<ul>
+<li><a href="#orgheadline3">1.3.1. functional technique</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline5">1.4. when to use a class</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline10">2. special methods</a>
+<ul>
+<li><a href="#orgheadline7">2.1. <code>__plus__</code>, <code>__minus__</code>, <code>__call__</code>, <code>__index__</code></a></li>
+<li><a href="#orgheadline8">2.2. iterator: <code>__iter__</code>, <code>__next__</code></a></li>
+<li><a href="#orgheadline9">2.3. context manager: <code>__enter__</code>, <code>__exit__</code></a></li>
+</ul>
+</li>
+<li><a href="#orgheadline13">3. meta technique</a>
+<ul>
+<li><a href="#orgheadline12">3.1. everything is a dictionary</a>
+<ul>
+<li><a href="#orgheadline11">3.1.1. getattr</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgheadline14">4. application</a></li>
+<li><a href="#orgheadline19">5. principles</a>
+<ul>
+<li><a href="#orgheadline15">5.1. the ones I used</a></li>
+<li><a href="#orgheadline16">5.2. Zen of python</a></li>
+<li><a href="#orgheadline17">5.3. The art of Unix programming</a></li>
+<li><a href="#orgheadline18">5.4. Design patterns</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgheadline6" class="outline-2">
+<h2 id="orgheadline6"><span class="section-number-2">1</span> introduction to classes</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-orgheadline1" class="outline-3">
+<h3 id="orgheadline1"><span class="section-number-3">1.1</span> the technique</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+Encapsulate logic by combining data and behavior. Why should we?
+<b>Avoiding global state</b> is the most urgent, important and easiest to be
+violated programming principle out there!
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #fa8072;">class</span> <span style="color: #9acd32; font-weight: bold;">A</span>:
+
+<span style="background-color: #2f4f4f;"> </span>   <span style="color: #7fffd4; font-weight: bold; font-style: italic;">class_variable</span> = <span style="color: #ffa07a; font-style: italic;">'class variable'</span>
+
+<span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">def</span> <span style="color: #7b68ee; font-weight: bold;">__init__</span>(<span style="color: #fa8072;">self</span>, argument):
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">self</span>.data = argument
+
+<span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">def</span> <span style="color: #7b68ee; font-weight: bold;">method_one</span>(<span style="color: #fa8072;">self</span>):
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">return</span> <span style="color: #fa8072;">self</span>.data
+
+<span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">def</span> <span style="color: #7b68ee; font-weight: bold;">method_two</span>(<span style="color: #fa8072;">self</span>, argument):
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">self</span>.data = (<span style="color: #fa8072;">self</span>.data, argument)
+
+
+<span style="color: #fa8072;">if</span> <span style="color: #98fb98; font-weight: bold;">__name__</span> == <span style="color: #ffa07a; font-style: italic;">'__main__'</span>:
+
+<span style="background-color: #2f4f4f;"> </span>   <span style="color: #7fffd4; font-weight: bold; font-style: italic;">a</span> = A(7)
+<span style="background-color: #2f4f4f;"> </span>   a.method_two(77)
+<span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">print</span>(a.method_one())
+<span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">print</span>(A.class_variable)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline2" class="outline-3">
+<h3 id="orgheadline2"><span class="section-number-3">1.2</span> half useful example</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+Example: we have a lot of functions that take a similar set of
+parameters.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #fa8072;">import</span> numpy <span style="color: #fa8072;">as</span> np
+<span style="color: #fa8072;">import</span> misc
+<span style="color: #fa8072;">import</span> quick
+
+
+<span style="color: #fa8072;">def</span> <span style="color: #7b68ee; font-weight: bold;">phase_lag</span>(phase_left, phase_right):
+<span style="background-color: #2f4f4f;"> </span>   <span style="color: #ffa07a; font-style: italic;">"""</span>
+<span style="color: #ffa07a; background-color: #2f4f4f; font-style: italic;"> </span><span style="color: #ffa07a; font-style: italic;">   phase_left and phase_right are floats or numpy arrays of floats.</span>
+<span style="color: #ffa07a; background-color: #2f4f4f; font-style: italic;"> </span><span style="color: #ffa07a; font-style: italic;">   return the phase lag between the two phases</span>
+<span style="color: #ffa07a; background-color: #2f4f4f; font-style: italic;"> </span><span style="color: #ffa07a; font-style: italic;">   """</span>
+<span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">return</span> np.<span style="color: #98fb98; font-weight: bold;">abs</span>(phase_left - phase_right)
+
+
+<span style="color: #fa8072;">def</span> <span style="color: #7b68ee; font-weight: bold;">non_isochrony</span>(phase, amplitude):
+<span style="background-color: #2f4f4f;"> </span>   <span style="color: #ffa07a; font-style: italic;">"""</span>
+<span style="color: #ffa07a; background-color: #2f4f4f; font-style: italic;"> </span><span style="color: #ffa07a; font-style: italic;">   phase, amplitude are floats or numpy arrays of floats.</span>
+
+<span style="color: #ffa07a; background-color: #2f4f4f; font-style: italic;"> </span><span style="color: #ffa07a; font-style: italic;">   return the nonisochrony</span>
+<span style="color: #ffa07a; background-color: #2f4f4f; font-style: italic;"> </span><span style="color: #ffa07a; font-style: italic;">   """</span>
+<span style="background-color: #2f4f4f;"> </span>   <span style="color: #7fffd4; font-weight: bold; font-style: italic;">fit</span> = misc.linear_fit(np.diff(phase), amplitude[1:] **2)
+<span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">return</span> fit[0][0]
+
+
+<span style="color: #fa8072;">if</span> <span style="color: #98fb98; font-weight: bold;">__name__</span> == <span style="color: #ffa07a; font-style: italic;">'__main__'</span>:
+
+<span style="background-color: #2f4f4f;"> </span>   <span style="color: #7fffd4; font-weight: bold; font-style: italic;">q_data</span> = np.loadtxt(<span style="color: #ffa07a; font-style: italic;">'positions'</span>)
+
+<span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">with</span> quick.Plot() <span style="color: #fa8072;">as</span> qp:
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   qp.plot(phase_lag(q_data[0, :], q_data[1, :]))
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   qp.set_xlabel(<span style="color: #ffa07a; font-style: italic;">'frame'</span>)
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   qp.set_ylabel(r<span style="color: #ffa07a; font-style: italic;">'$\varphi_L = \varphi_R$'</span>)
+
+<span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">print</span>(non_isochrony(q_data[0, :], q_data[2, :]),
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span> non_isochrony(q_data[1, :], q_data[3, :]))
+</pre>
+</div>
+
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #fa8072;">import</span> numpy <span style="color: #fa8072;">as</span> np
+<span style="color: #fa8072;">import</span> quick
+<span style="color: #fa8072;">import</span> misc
+
+
+<span style="color: #fa8072;">class</span> <span style="color: #9acd32; font-weight: bold;">Chlamy</span>:
+<span style="background-color: #2f4f4f;"> </span>   <span style="color: #ffa07a; font-style: italic;">"""</span>
+<span style="color: #ffa07a; background-color: #2f4f4f; font-style: italic;"> </span><span style="color: #ffa07a; font-style: italic;">   encapsulate data of flagella and some convenience function.</span>
+<span style="color: #ffa07a; background-color: #2f4f4f; font-style: italic;"> </span><span style="color: #ffa07a; font-style: italic;">   """</span>
+
+<span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">def</span> <span style="color: #7b68ee; font-weight: bold;">__init__</span>(<span style="color: #fa8072;">self</span>, phase_left, phase_right, amplitude_left, amplitude_right):
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #ffa07a; font-style: italic;">"""</span>
+<span style="color: #ffa07a; background-color: #2f4f4f; font-style: italic;"> </span><span style="color: #ffa07a; font-style: italic;">   </span><span style="color: #ffa07a; background-color: #2f4f4f; font-style: italic;"> </span><span style="color: #ffa07a; font-style: italic;">   all arguments are either floats or arrays of floats</span>
+<span style="color: #ffa07a; background-color: #2f4f4f; font-style: italic;"> </span><span style="color: #ffa07a; font-style: italic;">   </span><span style="color: #ffa07a; background-color: #2f4f4f; font-style: italic;"> </span><span style="color: #ffa07a; font-style: italic;">   """</span>
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">self</span>.phase_left = phase_left
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">self</span>.phase_right = phase_right
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">self</span>.amplitude_left = amplitude_left
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">self</span>.amplitude_right = amplitude_right
+
+<span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">def</span> <span style="color: #7b68ee; font-weight: bold;">phase_lag</span>(<span style="color: #fa8072;">self</span>):
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #ffa07a; font-style: italic;">"""</span>
+<span style="color: #ffa07a; background-color: #2f4f4f; font-style: italic;"> </span><span style="color: #ffa07a; font-style: italic;">   </span><span style="color: #ffa07a; background-color: #2f4f4f; font-style: italic;"> </span><span style="color: #ffa07a; font-style: italic;">   return the phase lag between the two flagella</span>
+<span style="color: #ffa07a; background-color: #2f4f4f; font-style: italic;"> </span><span style="color: #ffa07a; font-style: italic;">   </span><span style="color: #ffa07a; background-color: #2f4f4f; font-style: italic;"> </span><span style="color: #ffa07a; font-style: italic;">   """</span>
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">return</span> np.<span style="color: #98fb98; font-weight: bold;">abs</span>(<span style="color: #fa8072;">self</span>.phase_left - <span style="color: #fa8072;">self</span>.phase_right)
+
+<span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">def</span> <span style="color: #7b68ee; font-weight: bold;">non_isochrony</span>(<span style="color: #fa8072;">self</span>):
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #ffa07a; font-style: italic;">"""</span>
+<span style="color: #ffa07a; background-color: #2f4f4f; font-style: italic;"> </span><span style="color: #ffa07a; font-style: italic;">   </span><span style="color: #ffa07a; background-color: #2f4f4f; font-style: italic;"> </span><span style="color: #ffa07a; font-style: italic;">   return the nonisochrony of both flagella</span>
+<span style="color: #ffa07a; background-color: #2f4f4f; font-style: italic;"> </span><span style="color: #ffa07a; font-style: italic;">   </span><span style="color: #ffa07a; background-color: #2f4f4f; font-style: italic;"> </span><span style="color: #ffa07a; font-style: italic;">   """</span>
+
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">def</span> <span style="color: #7b68ee; font-weight: bold;">non_isochrony_inner</span>(phase, amplitude):
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #ffa07a; font-style: italic;">"""</span>
+<span style="color: #ffa07a; background-color: #2f4f4f; font-style: italic;"> </span><span style="color: #ffa07a; font-style: italic;">   </span><span style="color: #ffa07a; background-color: #2f4f4f; font-style: italic;"> </span><span style="color: #ffa07a; font-style: italic;">   </span><span style="color: #ffa07a; background-color: #2f4f4f; font-style: italic;"> </span><span style="color: #ffa07a; font-style: italic;">   phase, amplitude are floats or numpy arrays of floats.              </span>
+<span style="color: #ffa07a; background-color: #2f4f4f; font-style: italic;"> </span><span style="color: #ffa07a; font-style: italic;">   </span><span style="color: #ffa07a; background-color: #2f4f4f; font-style: italic;"> </span><span style="color: #ffa07a; font-style: italic;">   </span><span style="color: #ffa07a; background-color: #2f4f4f; font-style: italic;"> </span><span style="color: #ffa07a; font-style: italic;">   return the nonisochrony</span>
+<span style="color: #ffa07a; background-color: #2f4f4f; font-style: italic;"> </span><span style="color: #ffa07a; font-style: italic;">   </span><span style="color: #ffa07a; background-color: #2f4f4f; font-style: italic;"> </span><span style="color: #ffa07a; font-style: italic;">   </span><span style="color: #ffa07a; background-color: #2f4f4f; font-style: italic;"> </span><span style="color: #ffa07a; font-style: italic;">   """</span>
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #7fffd4; font-weight: bold; font-style: italic;">fit</span> = misc.linear_fit(np.diff(phase), amplitude[1:] **2)
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">return</span> fit[0][0]
+
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #7fffd4; font-weight: bold; font-style: italic;">ni_1</span> = non_isochrony_inner(<span style="color: #fa8072;">self</span>.phase_left, <span style="color: #fa8072;">self</span>.amplitude_left)
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #7fffd4; font-weight: bold; font-style: italic;">ni_2</span> = non_isochrony_inner(<span style="color: #fa8072;">self</span>.phase_right, <span style="color: #fa8072;">self</span>.amplitude_right)
+
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">return</span> (ni_1, ni_2)
+
+
+
+<span style="color: #fa8072;">if</span> <span style="color: #98fb98; font-weight: bold;">__name__</span> == <span style="color: #ffa07a; font-style: italic;">'__main__'</span>:
+
+<span style="background-color: #2f4f4f;"> </span>   <span style="color: #7fffd4; font-weight: bold; font-style: italic;">chlamy</span> = Chlamy(*np.loadtxt(<span style="color: #ffa07a; font-style: italic;">'positions'</span>)[:4])
+
+<span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">with</span> quick.Plot() <span style="color: #fa8072;">as</span> qp:
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   qp.plot(chlamy.phase_lag())
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   qp.set_xlabel(<span style="color: #ffa07a; font-style: italic;">'frame'</span>)
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   qp.set_ylabel(r<span style="color: #ffa07a; font-style: italic;">'$\varphi_L = \varphi_R$'</span>)
+
+<span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">print</span>(chlamy.non_isochrony())
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgheadline4" class="outline-3">
+<h3 id="orgheadline4"><span class="section-number-3">1.3</span> when not to use a class</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+<b>Overengineering is dangerous!</b>
+</p>
+
+<p>
+Do not use classes if you don't have to.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #fa8072;">class</span> <span style="color: #9acd32; font-weight: bold;">TooSimple</span>:
+
+<span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">def</span> <span style="color: #7b68ee; font-weight: bold;">__init__</span>(<span style="color: #fa8072;">self</span>, data):
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">self</span>.data = data
+
+<span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">def</span> <span style="color: #7b68ee; font-weight: bold;">call</span>(<span style="color: #fa8072;">self</span>, value):
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">return</span> <span style="color: #fa8072;">self</span>.data + value
+
+<span style="color: #7fffd4; font-weight: bold; font-style: italic;">ts</span> = TooSimple(4)
+<span style="color: #fa8072;">print</span>(ts.call(5))
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgheadline3" class="outline-4">
+<h4 id="orgheadline3"><span class="section-number-4">1.3.1</span> functional technique</h4>
+<div class="outline-text-4" id="text-1-3-1">
+<p>
+ Use functions instead. Functions are first class citizens of python!
+=&gt; Function may be arguments to other functions as well as return
+values. They are treated as normal data objects.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #fa8072;">def</span> <span style="color: #7b68ee; font-weight: bold;">very_simple</span>(data):
+<span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">def</span> <span style="color: #7b68ee; font-weight: bold;">call</span>(value):
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">return</span> data + value
+<span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">return</span> call
+
+<span style="color: #7fffd4; font-weight: bold; font-style: italic;">ts</span> = very_simple(4)
+<span style="color: #fa8072;">print</span>(ts(5))
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline5" class="outline-3">
+<h3 id="orgheadline5"><span class="section-number-3">1.4</span> when to use a class</h3>
+<div class="outline-text-3" id="text-1-4">
+<ul class="org-ul">
+<li>having different functions that share the same data (see example)
+<b>data encapsulation</b></li>
+<li>define programming interfaces explicitely
+<b>be explicit</b></li>
+<li>allow for polymorphism: duck typing
+<b>don't repeat yourself</b></li>
+<li>using patterns: for example facade: provide the same interface for
+different things.</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline10" class="outline-2">
+<h2 id="orgheadline10"><span class="section-number-2">2</span> special methods</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+programming language designers tend to provide the possibility to
+allow users to extent their code functionality in a way that <b>looks
+consistent</b> with the language itself.
+</p>
+</div>
+
+<div id="outline-container-orgheadline7" class="outline-3">
+<h3 id="orgheadline7"><span class="section-number-3">2.1</span> <code>__plus__</code>, <code>__minus__</code>, <code>__call__</code>, <code>__index__</code></h3>
+<div class="outline-text-3" id="text-2-1">
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #fa8072;">class</span> <span style="color: #9acd32; font-weight: bold;">Polynom</span>:
+<span style="background-color: #2f4f4f;"> </span>   <span style="color: #ffa07a; font-style: italic;">"""</span>
+<span style="color: #ffa07a; background-color: #2f4f4f; font-style: italic;"> </span><span style="color: #ffa07a; font-style: italic;">   represent polynoms that can be summed, negated and evaluated</span>
+<span style="color: #ffa07a; background-color: #2f4f4f; font-style: italic;"> </span><span style="color: #ffa07a; font-style: italic;">   """</span>
+
+<span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">def</span> <span style="color: #7b68ee; font-weight: bold;">__init__</span>(<span style="color: #fa8072;">self</span>, c, nx, ny, nz):
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #ffa07a; font-style: italic;">"""</span>
+<span style="color: #ffa07a; background-color: #2f4f4f; font-style: italic;"> </span><span style="color: #ffa07a; font-style: italic;">   </span><span style="color: #ffa07a; background-color: #2f4f4f; font-style: italic;"> </span><span style="color: #ffa07a; font-style: italic;">   =&gt; c * (x ** nx) * (y ** ny) * (z ** nz)</span>
+<span style="color: #ffa07a; background-color: #2f4f4f; font-style: italic;"> </span><span style="color: #ffa07a; font-style: italic;">   </span><span style="color: #ffa07a; background-color: #2f4f4f; font-style: italic;"> </span><span style="color: #ffa07a; font-style: italic;">   ni being integers, please</span>
+<span style="color: #ffa07a; background-color: #2f4f4f; font-style: italic;"> </span><span style="color: #ffa07a; font-style: italic;">   </span><span style="color: #ffa07a; background-color: #2f4f4f; font-style: italic;"> </span><span style="color: #ffa07a; font-style: italic;">   """</span>
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">self</span>.<span style="color: #98fb98; font-weight: bold;">intern</span> = {}
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">if</span> c != 0:
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">self</span>.<span style="color: #98fb98; font-weight: bold;">intern</span>[(nx, ny, nz)] = c
+
+
+<span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">def</span> <span style="color: #7b68ee; font-weight: bold;">add_term</span>(<span style="color: #fa8072;">self</span>, c, nx, ny, nz):
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #ffa07a; font-style: italic;">"""</span>
+<span style="color: #ffa07a; background-color: #2f4f4f; font-style: italic;"> </span><span style="color: #ffa07a; font-style: italic;">   </span><span style="color: #ffa07a; background-color: #2f4f4f; font-style: italic;"> </span><span style="color: #ffa07a; font-style: italic;">   add another term to the polynom</span>
+<span style="color: #ffa07a; background-color: #2f4f4f; font-style: italic;"> </span><span style="color: #ffa07a; font-style: italic;">   </span><span style="color: #ffa07a; background-color: #2f4f4f; font-style: italic;"> </span><span style="color: #ffa07a; font-style: italic;">   """</span>
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">if</span> (nx, ny, nz) <span style="color: #fa8072;">in</span> <span style="color: #fa8072;">self</span>.<span style="color: #98fb98; font-weight: bold;">intern</span>:
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">self</span>.<span style="color: #98fb98; font-weight: bold;">intern</span>[(nx, ny, nz)] += c
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">else</span>:
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">self</span>.<span style="color: #98fb98; font-weight: bold;">intern</span>[(nx, ny, nz)] = c
+
+
+<span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">def</span> <span style="color: #7b68ee; font-weight: bold;">__neg__</span>(<span style="color: #fa8072;">self</span>):
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #7fffd4; font-weight: bold; font-style: italic;">pol</span> = Polynom(0,0,0,0)
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">for</span> (key, c) <span style="color: #fa8072;">in</span> <span style="color: #fa8072;">self</span>.<span style="color: #98fb98; font-weight: bold;">intern</span>.items():
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   pol.<span style="color: #98fb98; font-weight: bold;">intern</span>[key] = -c
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">return</span> pol
+
+
+<span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">def</span> <span style="color: #7b68ee; font-weight: bold;">__add__</span>(<span style="color: #fa8072;">self</span>, polynom):
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #7fffd4; font-weight: bold; font-style: italic;">pol</span> = Polynom(0,0,0,0)
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">for</span> ph <span style="color: #fa8072;">in</span> [<span style="color: #fa8072;">self</span>, polynom]:
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">for</span> (nx, ny, nz) <span style="color: #fa8072;">in</span> ph.<span style="color: #98fb98; font-weight: bold;">intern</span>:
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   pol.add_term(ph.<span style="color: #98fb98; font-weight: bold;">intern</span>[(nx, ny, nz)], nx, ny, nz)
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">return</span> pol
+
+
+<span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">def</span> <span style="color: #7b68ee; font-weight: bold;">__sub__</span>(<span style="color: #fa8072;">self</span>, polynom):
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">return</span> <span style="color: #fa8072;">self</span> + -polynom
+
+
+<span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">def</span> <span style="color: #7b68ee; font-weight: bold;">__call__</span>(<span style="color: #fa8072;">self</span>,x,y,z):
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #7fffd4; font-weight: bold; font-style: italic;">val</span> = 0
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">for</span> (nx,ny,nz) <span style="color: #fa8072;">in</span> <span style="color: #fa8072;">self</span>.<span style="color: #98fb98; font-weight: bold;">intern</span>:
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #7fffd4; font-weight: bold; font-style: italic;">h</span> = <span style="color: #fa8072;">self</span>.<span style="color: #98fb98; font-weight: bold;">intern</span>[(nx,ny,nz)]
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">if</span> nx &gt; 0:
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #7fffd4; font-weight: bold; font-style: italic;">h</span> *= x**nx
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">if</span> ny &gt; 0:
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #7fffd4; font-weight: bold; font-style: italic;">h</span> *= y**ny
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">if</span> nz &gt; 0:
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #7fffd4; font-weight: bold; font-style: italic;">h</span> *= z**nz
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #7fffd4; font-weight: bold; font-style: italic;">val</span> += h
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">return</span> val
+
+
+<span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">def</span> <span style="color: #7b68ee; font-weight: bold;">__repr__</span>(<span style="color: #fa8072;">self</span>):
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #7fffd4; font-weight: bold; font-style: italic;">h</span> = <span style="color: #ffa07a; font-style: italic;">''</span>
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">for</span> (nx,ny,nz) <span style="color: #fa8072;">in</span> <span style="color: #fa8072;">self</span>.<span style="color: #98fb98; font-weight: bold;">intern</span>:
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #7fffd4; font-weight: bold; font-style: italic;">h</span> += <span style="color: #ffa07a; font-style: italic;">'{0}'</span>.<span style="color: #98fb98; font-weight: bold;">format</span>(<span style="color: #fa8072;">self</span>.<span style="color: #98fb98; font-weight: bold;">intern</span>[(nx,ny,nz)])
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">for</span> x <span style="color: #fa8072;">in</span> <span style="color: #98fb98; font-weight: bold;">range</span>(nx):
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #7fffd4; font-weight: bold; font-style: italic;">h</span> += <span style="color: #ffa07a; font-style: italic;">'x'</span>
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">for</span> y <span style="color: #fa8072;">in</span> <span style="color: #98fb98; font-weight: bold;">range</span>(ny):
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #7fffd4; font-weight: bold; font-style: italic;">h</span> += <span style="color: #ffa07a; font-style: italic;">'y'</span>
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">for</span> z <span style="color: #fa8072;">in</span> <span style="color: #98fb98; font-weight: bold;">range</span>(nz):
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #7fffd4; font-weight: bold; font-style: italic;">h</span> += <span style="color: #ffa07a; font-style: italic;">'z'</span>
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #7fffd4; font-weight: bold; font-style: italic;">h</span> = h+<span style="color: #ffa07a; font-style: italic;">' + '</span>
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">return</span> h[:-3]
+
+
+<span style="color: #fa8072;">if</span> <span style="color: #98fb98; font-weight: bold;">__name__</span> == <span style="color: #ffa07a; font-style: italic;">'__main__'</span>:
+
+<span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">import</span> numpy <span style="color: #fa8072;">as</span> np
+
+<span style="background-color: #2f4f4f;"> </span>   <span style="color: #7fffd4; font-weight: bold; font-style: italic;">one</span> = Polynom(1, 0, 0, 0)
+<span style="background-color: #2f4f4f;"> </span>   <span style="color: #7fffd4; font-weight: bold; font-style: italic;">x</span> = Polynom(1, 1, 0, 0)
+<span style="background-color: #2f4f4f;"> </span>   <span style="color: #7fffd4; font-weight: bold; font-style: italic;">xxyzz</span> = Polynom(1, 2, 1, 2)
+<span style="background-color: #2f4f4f;"> </span>   <span style="color: #7fffd4; font-weight: bold; font-style: italic;">xyz5</span> = Polynom(5, 1, 1, 1)
+<span style="background-color: #2f4f4f;"> </span>   <span style="color: #7fffd4; font-weight: bold; font-style: italic;">yy</span> = Polynom(1, 0, 2, 0)
+
+<span style="background-color: #2f4f4f;"> </span>   <span style="color: #7fffd4; font-weight: bold; font-style: italic;">polynom_1</span> = one - xxyzz + (-yy)
+<span style="background-color: #2f4f4f;"> </span>   <span style="color: #7fffd4; font-weight: bold; font-style: italic;">polynom_2</span> = np.<span style="color: #98fb98; font-weight: bold;">sum</span>([-one, x, xyz5])
+
+<span style="background-color: #2f4f4f;"> </span>   <span style="color: #7fffd4; font-weight: bold; font-style: italic;">r</span> = (2, 3, 4)
+<span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">print</span>(<span style="color: #ffa07a; font-style: italic;">'{0} = {1}'</span>.<span style="color: #98fb98; font-weight: bold;">format</span>(polynom_1, polynom_1(*r)))
+<span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">print</span>(<span style="color: #ffa07a; font-style: italic;">'{0} = {1}'</span>.<span style="color: #98fb98; font-weight: bold;">format</span>(polynom_2, polynom_2(*r)))
+</pre>
+</div>
+
+<p>
+Another nice aspect about implemtenting those interfaces is that we
+are able to <b>reuse</b> function that just use those interfaces.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgheadline8" class="outline-3">
+<h3 id="orgheadline8"><span class="section-number-3">2.2</span> iterator: <code>__iter__</code>, <code>__next__</code></h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+Consistent look
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #fa8072;">for</span> element <span style="color: #fa8072;">in</span> iterator:
+<span style="background-color: #2f4f4f;"> </span>   do_something_with(element)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline9" class="outline-3">
+<h3 id="orgheadline9"><span class="section-number-3">2.3</span> context manager: <code>__enter__</code>, <code>__exit__</code></h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+Encapsulate state
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #fa8072;">with</span> Context() <span style="color: #fa8072;">as</span> c:
+<span style="background-color: #2f4f4f;"> </span>   do_something_with(c)
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgheadline13" class="outline-2">
+<h2 id="orgheadline13"><span class="section-number-2">3</span> meta technique</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+meta programming allows the programmer to modify the internal
+structure of the language and to extent program code dynamically. This
+is closely related to <b>programmatically creating code</b>. In this way
+boilerplate code can be avoided, which helps fulfilling the pricinple
+to <b>never duplicate code</b>.
+</p>
+
+<p>
+Code may become very unreadable, this is ok for your own projects,
+nobody has to read, which is more likely the case for a
+scientist. Usually it is good practice to avoid metaprogramming.
+</p>
+</div>
+
+<div id="outline-container-orgheadline12" class="outline-3">
+<h3 id="orgheadline12"><span class="section-number-3">3.1</span> everything is a dictionary</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+this is why metaprogramming works so easily in python.
+</p>
+</div>
+
+<div id="outline-container-orgheadline11" class="outline-4">
+<h4 id="orgheadline11"><span class="section-number-4">3.1.1</span> getattr</h4>
+<div class="outline-text-4" id="text-3-1-1">
+<p>
+getattr allows us to dynamically generate methods.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #fa8072;">class</span> <span style="color: #9acd32; font-weight: bold;">Meta</span>:
+<span style="background-color: #2f4f4f;"> </span>   <span style="color: #ffa07a; font-style: italic;">"""</span>
+<span style="color: #ffa07a; background-color: #2f4f4f; font-style: italic;"> </span><span style="color: #ffa07a; font-style: italic;">   a class that when a method is called, returns the name and</span>
+<span style="color: #ffa07a; background-color: #2f4f4f; font-style: italic;"> </span><span style="color: #ffa07a; font-style: italic;">   the arguments of that call.</span>
+<span style="color: #ffa07a; background-color: #2f4f4f; font-style: italic;"> </span><span style="color: #ffa07a; font-style: italic;">   """</span>
+<span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">def</span> <span style="color: #7b68ee; font-weight: bold;">__getattr__</span>(<span style="color: #fa8072;">self</span>, name):
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">def</span> <span style="color: #7b68ee; font-weight: bold;">internal_function</span>(*args, **kwargs):
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">return</span> (name, args, kwargs)
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">return</span> internal_function
+
+<span style="color: #7fffd4; font-weight: bold; font-style: italic;">m</span> = Meta()
+<span style="color: #fa8072;">print</span>(<span style="color: #98fb98; font-weight: bold;">dir</span>(m))
+<span style="color: #fa8072;">print</span>(m.called(<span style="color: #ffa07a; font-style: italic;">'bla'</span>))
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgheadline14" class="outline-2">
+<h2 id="orgheadline14"><span class="section-number-2">4</span> application</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+I find Matplotlib is messy:
+There are two interfaces:
+</p>
+<ul class="org-ul">
+<li>scripting (flawed because of state engine (global state!))</li>
+<li>object oriented (flawed because class interfaces are much too broad)</li>
+<li>there is a lot of redundance (do not duplicate code!)</li>
+</ul>
+
+<p>
+Encapsulate messy matplotlib into consistent context manager by using
+the dictionary structure of classes and modules and <code>__getattr_</code>.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #fa8072;">import</span> sys
+
+<span style="color: #fa8072;">class</span> <span style="color: #9acd32; font-weight: bold;">Plot</span>(<span style="color: #98fb98; font-weight: bold;">object</span>):
+<span style="background-color: #2f4f4f;"> </span>   <span style="color: #ffa07a; font-style: italic;">"""</span>
+<span style="color: #ffa07a; background-color: #2f4f4f; font-style: italic;"> </span><span style="color: #ffa07a; font-style: italic;">   this class mimics matplotlib's axis class. All its methods are</span>
+<span style="color: #ffa07a; background-color: #2f4f4f; font-style: italic;"> </span><span style="color: #ffa07a; font-style: italic;">   available.</span>
+<span style="color: #ffa07a; background-color: #2f4f4f; font-style: italic;"> </span><span style="color: #ffa07a; font-style: italic;">   Additionally, the with construction can be used.</span>
+<span style="color: #ffa07a; background-color: #2f4f4f; font-style: italic;"> </span><span style="color: #ffa07a; font-style: italic;">   """</span>
+
+<span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">def</span> <span style="color: #7b68ee; font-weight: bold;">__init__</span>(<span style="color: #fa8072;">self</span>, filename=<span style="color: #7fffd4; font-weight: bold;">None</span>, figsize=(3, 3), grid=<span style="color: #7fffd4; font-weight: bold;">True</span>, **kwargs):
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #ffa07a; font-style: italic;">""" initialize an axes object """</span>
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">import</span> matplotlib.pyplot <span style="color: #fa8072;">as</span> plt
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">self</span>.plt = plt
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">self</span>.filename = filename
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">self</span>.fig = plt.figure(figsize=figsize)
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">self</span>.axe = plt.subplot(111, **kwargs)
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">self</span>.axe.grid(grid)
+
+<span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">def</span> <span style="color: #7b68ee; font-weight: bold;">__enter__</span>(<span style="color: #fa8072;">self</span>):
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #ffa07a; font-style: italic;">""" assign the return value to the with target """</span>
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">return</span> <span style="color: #fa8072;">self</span>
+
+<span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">def</span> <span style="color: #7b68ee; font-weight: bold;">__exit__</span>(<span style="color: #fa8072;">self</span>, <span style="color: #98fb98; font-weight: bold;">type</span>, value, traceback):
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #ffa07a; font-style: italic;">"""</span>
+<span style="color: #ffa07a; background-color: #2f4f4f; font-style: italic;"> </span><span style="color: #ffa07a; font-style: italic;">   </span><span style="color: #ffa07a; background-color: #2f4f4f; font-style: italic;"> </span><span style="color: #ffa07a; font-style: italic;">   since this class is not made for exception handling, but for</span>
+<span style="color: #ffa07a; background-color: #2f4f4f; font-style: italic;"> </span><span style="color: #ffa07a; font-style: italic;">   </span><span style="color: #ffa07a; background-color: #2f4f4f; font-style: italic;"> </span><span style="color: #ffa07a; font-style: italic;">   plotting, we do not use the arguments to the method.</span>
+<span style="color: #ffa07a; background-color: #2f4f4f; font-style: italic;"> </span><span style="color: #ffa07a; font-style: italic;">   </span><span style="color: #ffa07a; background-color: #2f4f4f; font-style: italic;"> </span><span style="color: #ffa07a; font-style: italic;">   """</span>
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">import</span> matplotlib <span style="color: #fa8072;">as</span> mlib
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   mlib.rcParams[<span style="color: #ffa07a; font-style: italic;">'text.latex.preamble'</span>].append(r<span style="color: #ffa07a; font-style: italic;">'\usepackage{amsmath}'</span>)
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   mlib.rcParams[<span style="color: #ffa07a; font-style: italic;">'text.latex.preamble'</span>].append(r<span style="color: #ffa07a; font-style: italic;">'\usepackage{amssymb}'</span>)
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   mlib.rc(<span style="color: #ffa07a; font-style: italic;">'text'</span>, usetex=<span style="color: #7fffd4; font-weight: bold;">True</span>)
+
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">if</span> <span style="color: #fa8072;">self</span>.filename <span style="color: #fa8072;">is</span> <span style="color: #fa8072;">not</span> <span style="color: #7fffd4; font-weight: bold;">None</span>:
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">self</span>.fig.savefig(<span style="color: #fa8072;">self</span>.filename, bbox_inches=<span style="color: #ffa07a; font-style: italic;">'tight'</span>)
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">else</span>:
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">self</span>.plt.show()
+
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">self</span>.plt.close(fig)
+
+<span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">def</span> <span style="color: #7b68ee; font-weight: bold;">__getattr__</span>(<span style="color: #fa8072;">self</span>, name):
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #ffa07a; font-style: italic;">""" this object should act like a matplotlib axis object """</span>
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #7fffd4; font-weight: bold; font-style: italic;">res</span> = <span style="color: #7fffd4; font-weight: bold;">None</span>
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">try</span>:
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #7fffd4; font-weight: bold; font-style: italic;">res</span> = <span style="color: #98fb98; font-weight: bold;">getattr</span>(<span style="color: #fa8072;">self</span>.axe, name)
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">except</span>:
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #7fffd4; font-weight: bold; font-style: italic;">res</span> = <span style="color: #98fb98; font-weight: bold;">getattr</span>(<span style="color: #fa8072;">self</span>.plt, name)
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">return</span> res
+
+
+
+<span style="color: #fa8072;">class</span> <span style="color: #9acd32; font-weight: bold;">WithEncapsulate</span>(<span style="color: #98fb98; font-weight: bold;">object</span>):
+<span style="background-color: #2f4f4f;"> </span>   <span style="color: #ffa07a; font-style: italic;">"""</span>
+<span style="color: #ffa07a; background-color: #2f4f4f; font-style: italic;"> </span><span style="color: #ffa07a; font-style: italic;">   All locals of this class will be transferred to the module's namespace,</span>
+<span style="color: #ffa07a; background-color: #2f4f4f; font-style: italic;"> </span><span style="color: #ffa07a; font-style: italic;">   because then, the __getattr__ method can be used for creating methods at</span>
+<span style="color: #ffa07a; background-color: #2f4f4f; font-style: italic;"> </span><span style="color: #ffa07a; font-style: italic;">   runtime, which later leads the creation of module functions at runtime.</span>
+<span style="color: #ffa07a; background-color: #2f4f4f; font-style: italic;"> </span><span style="color: #ffa07a; font-style: italic;">   """</span>
+
+<span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">def</span> <span style="color: #7b68ee; font-weight: bold;">__init__</span>(<span style="color: #fa8072;">self</span>, classconstructor, argname):
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #ffa07a; font-style: italic;">"""</span>
+<span style="color: #ffa07a; background-color: #2f4f4f; font-style: italic;"> </span><span style="color: #ffa07a; font-style: italic;">   </span><span style="color: #ffa07a; background-color: #2f4f4f; font-style: italic;"> </span><span style="color: #ffa07a; font-style: italic;">   save a classconstructor, whose class will be instantiated constantly.</span>
+<span style="color: #ffa07a; background-color: #2f4f4f; font-style: italic;"> </span><span style="color: #ffa07a; font-style: italic;">   </span><span style="color: #ffa07a; background-color: #2f4f4f; font-style: italic;"> </span><span style="color: #ffa07a; font-style: italic;">   classconstructor is instantiated with exactly one argument.</span>
+<span style="color: #ffa07a; background-color: #2f4f4f; font-style: italic;"> </span><span style="color: #ffa07a; font-style: italic;">   </span><span style="color: #ffa07a; background-color: #2f4f4f; font-style: italic;"> </span><span style="color: #ffa07a; font-style: italic;">   for each function call, that one argument may be provided by an</span>
+<span style="color: #ffa07a; background-color: #2f4f4f; font-style: italic;"> </span><span style="color: #ffa07a; font-style: italic;">   </span><span style="color: #ffa07a; background-color: #2f4f4f; font-style: italic;"> </span><span style="color: #ffa07a; font-style: italic;">   optional argument, its default value is None.</span>
+<span style="color: #ffa07a; background-color: #2f4f4f; font-style: italic;"> </span><span style="color: #ffa07a; font-style: italic;">   </span><span style="color: #ffa07a; background-color: #2f4f4f; font-style: italic;"> </span><span style="color: #ffa07a; font-style: italic;">   """</span>
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">self</span>.classconstructor = classconstructor
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">self</span>.argname = argname
+
+<span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">def</span> <span style="color: #7b68ee; font-weight: bold;">__getattr__</span>(<span style="color: #fa8072;">self</span>, name):
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #ffa07a; font-style: italic;">""" make methods of QuickPlot available as method of this wrapper """</span>
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">if</span> name == <span style="color: #fa8072;">self</span>.classconstructor.<span style="color: #98fb98; font-weight: bold;">__name__</span>:
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">return</span> <span style="color: #fa8072;">self</span>.classconstructor
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">def</span> <span style="color: #7b68ee; font-weight: bold;">hfunc</span>(*args, **kwargs):
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #7fffd4; font-weight: bold; font-style: italic;">value</span> = <span style="color: #7fffd4; font-weight: bold;">None</span>
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">if</span> <span style="color: #fa8072;">self</span>.argname <span style="color: #fa8072;">in</span> kwargs:
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #7fffd4; font-weight: bold; font-style: italic;">value</span> = kwargs[<span style="color: #fa8072;">self</span>.argname]
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">del</span> kwargs[<span style="color: #fa8072;">self</span>.argname]
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">with</span> <span style="color: #fa8072;">self</span>.classconstructor(value) <span style="color: #fa8072;">as</span> plt:
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #98fb98; font-weight: bold;">getattr</span>(plt, name)(*args, **kwargs)
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="color: #fa8072;">return</span> hfunc
+
+<span style="color: #ffffff;">### </span><span style="color: #ffffff;">release Plot and all the matplotlib axis methods as functions.</span>
+<span style="color: #7fffd4; font-weight: bold; font-style: italic;">sys.modules</span>[<span style="color: #98fb98; font-weight: bold;">__name__</span>] = WithEncapsulate(Plot, <span style="color: #ffa07a; font-style: italic;">'filename'</span>)
+</pre>
+</div>
+
+
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #fa8072;">import</span> numpy <span style="color: #fa8072;">as</span> np
+<span style="color: #fa8072;">import</span> quick
+<span style="color: #fa8072;">import</span> velocityfield <span style="color: #fa8072;">as</span> vf
+<span style="color: #fa8072;">import</span> misc
+
+
+<span style="color: #7fffd4; font-weight: bold; font-style: italic;">oseen_xy</span> = <span style="color: #fa8072;">lambda</span> x, y: vf.oseentensor([x, y, 1])
+<span style="color: #7fffd4; font-weight: bold; font-style: italic;">grid</span> = np.linspace(-4, 4, 100)
+
+<span style="color: #7fffd4; font-weight: bold; font-style: italic;">oseens</span> = np.array([[oseen_xy(x, y) <span style="color: #fa8072;">for</span> x <span style="color: #fa8072;">in</span> grid] <span style="color: #fa8072;">for</span> y <span style="color: #fa8072;">in</span> grid])
+<span style="color: #7fffd4; font-weight: bold; font-style: italic;">oseens</span> = np.concatenate([oseens[:, :, i, j] <span style="color: #fa8072;">for</span> (i, j) <span style="color: #fa8072;">in</span> [(0, 1), (1, 2)]],
+<span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   <span style="background-color: #2f4f4f;"> </span>   axis=1)
+
+
+quick.imshow(oseens)
+
+<span style="color: #fa8072;">with</span> quick.Plot() <span style="color: #fa8072;">as</span> qp:
+
+<span style="background-color: #2f4f4f;"> </span>   qp.remove_border()
+<span style="background-color: #2f4f4f;"> </span>   qp.set_xlabel(r<span style="color: #ffa07a; font-style: italic;">'$x$'</span>)
+<span style="background-color: #2f4f4f;"> </span>   qp.set_ylabel(r<span style="color: #ffa07a; font-style: italic;">'$y$'</span>)
+<span style="background-color: #2f4f4f;"> </span>   qp.imshow(oseens, <span style="color: #ffa07a; font-style: italic;">'BrBG'</span>)
+<span style="background-color: #2f4f4f;"> </span>   qp.colorbar(oseens, <span style="color: #ffa07a; font-style: italic;">'BrBG'</span>)
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgheadline19" class="outline-2">
+<h2 id="orgheadline19"><span class="section-number-2">5</span> principles</h2>
+<div class="outline-text-2" id="text-5">
+</div><div id="outline-container-orgheadline15" class="outline-3">
+<h3 id="orgheadline15"><span class="section-number-3">5.1</span> the ones I used</h3>
+<div class="outline-text-3" id="text-5-1">
+<ul class="org-ul">
+<li>write content and logic only once</li>
+<li>be consistent, least surprise</li>
+<li>avoid global state</li>
+<li>write modular code (only possible with little global state)</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline16" class="outline-3">
+<h3 id="orgheadline16"><span class="section-number-3">5.2</span> Zen of python</h3>
+<div class="outline-text-3" id="text-5-2">
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #fa8072;">import</span> this
+</pre>
+</div>
+
+<p>
+The Zen of Python, by Tim Peters
+</p>
+
+<ul class="org-ul">
+<li>Beautiful is better than ugly.</li>
+<li>Explicit is better than implicit.</li>
+<li>Simple is better than complex.</li>
+<li>Complex is better than complicated.</li>
+<li>Flat is better than nested.</li>
+<li>Sparse is better than dense.</li>
+<li>Readability counts.</li>
+<li>Special cases aren't special enough to break the rules.</li>
+<li>Although practicality beats purity.</li>
+<li>Errors should never pass silently.</li>
+<li>Unless explicitly silenced.</li>
+<li>In the face of ambiguity, refuse the temptation to guess.</li>
+<li>There should be one&#x2013; and preferably only one &#x2013;obvious way to do it.</li>
+<li>Although that way may not be obvious at first unless you're Dutch.</li>
+<li>Now is better than never.</li>
+<li>Although never is often better than <b>right</b> now.</li>
+<li>If the implementation is hard to explain, it's a bad idea.</li>
+<li>If the implementation is easy to explain, it may be a good idea.</li>
+<li>Namespaces are one honking great idea &#x2013; let's do more of those!</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline17" class="outline-3">
+<h3 id="orgheadline17"><span class="section-number-3">5.3</span> The art of Unix programming</h3>
+<div class="outline-text-3" id="text-5-3">
+<p>
+<a href="https://en.wikipedia.org/wiki/Unix_philosophy">https://en.wikipedia.org/wiki/Unix_philosophy</a>
+</p>
+
+<ul class="org-ul">
+<li>Rule of Modularity</li>
+<li>Rule of Clarity</li>
+<li>Rule of Composition</li>
+<li>Rule of Separation</li>
+<li>Rule of Simplicity</li>
+<li>Rule of Parsimony</li>
+<li>Rule of Transparency</li>
+<li>Rule of Robustness</li>
+<li>Rule of Representation</li>
+<li>Rule of Least Surprise</li>
+<li>Rule of Silence</li>
+<li>Rule of Repair</li>
+<li>Rule of Economy</li>
+<li>Rule of Generation</li>
+<li>Rule of Optimization</li>
+<li>Rule of Diversity</li>
+<li>Rule of Extensibility</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgheadline18" class="outline-3">
+<h3 id="orgheadline18"><span class="section-number-3">5.4</span> Design patterns</h3>
+<div class="outline-text-3" id="text-5-4">
+<p>
+For fulfilling some of the principles mentioned above, design patterns
+were developed. Most of them are made for older Versions of static
+languages like Java and are obsolete in modern Python. They usually
+emphasise flexibility of program structures in the way, such that
+programs or libraries are hard to be misused, but easily extended,
+without interfering with already existing code.
+</p>
+
+<p>
+Interfaces are made very explicite and communication between
+developers is eased, but only when all developers are familiar with
+the concept. Independent working of many people on the same projects
+shall be facilitated.
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Gary Klindt</p>
+<p class="date">Created: 2016-03-30 Wed 17:01</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

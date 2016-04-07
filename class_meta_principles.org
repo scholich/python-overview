@@ -1,0 +1,599 @@
+#+SETUPFILE: /home/gary/gits/emacs/.emacs.d/plugins/org-html-themes/setup/theme-readtheorg.setup
+* introduction to classes
+
+** the technique
+
+Encapsulate logic by combining data and behavior. Why should we?
+*Avoiding global state* is the most urgent, important and easiest to be
+violated programming principle out there!
+
+#+BEGIN_SRC python :results output
+  class A:
+
+      class_variable = 'class variable'
+
+      def __init__(self, argument):
+          self.data = argument
+
+      def method_one(self):
+          return self.data
+
+      def method_two(self, argument):
+          self.data = (self.data, argument)
+
+  
+  if __name__ == '__main__':
+
+      a = A(7)
+      a.method_two(77)
+      print(a.method_one())
+      print(A.class_variable)
+#+END_SRC
+
+#+RESULTS:
+: (7, 77)
+: class variable
+
+** half useful example
+
+Example: we have a lot of functions that take a similar set of
+parameters.
+#+BEGIN_SRC python :results output
+  import numpy as np
+  import misc
+  import quick
+
+
+  def phase_lag(phase_left, phase_right):
+      """
+      phase_left and phase_right are floats or numpy arrays of floats.
+      return the phase lag between the two phases
+      """
+      return np.abs(phase_left - phase_right)
+
+
+  def non_isochrony(phase, amplitude):
+      """
+      phase, amplitude are floats or numpy arrays of floats.
+
+      return the nonisochrony
+      """
+      fit = misc.linear_fit(np.diff(phase), amplitude[1:] **2)
+      return fit[0][0]
+
+
+  if __name__ == '__main__':
+
+      q_data = np.loadtxt('positions')
+  
+      with quick.Plot() as qp:
+          qp.plot(phase_lag(q_data[0, :], q_data[1, :]))
+          qp.set_xlabel('frame')
+          qp.set_ylabel(r'$\varphi_L = \varphi_R$')
+  
+      print(non_isochrony(q_data[0, :], q_data[2, :]),
+            non_isochrony(q_data[1, :], q_data[3, :]))
+#+END_SRC
+
+#+RESULTS:
+: -8.89251948416 -5.95791757135
+
+
+#+BEGIN_SRC python :results output
+import numpy as np
+import quick
+import misc
+
+
+class Chlamy:
+    """
+    encapsulate data of flagella and some convenience function.
+    """
+
+    def __init__(self, phase_left, phase_right, amplitude_left, amplitude_right):
+        """
+        all arguments are either floats or arrays of floats
+        """
+        self.phase_left = phase_left
+        self.phase_right = phase_right
+        self.amplitude_left = amplitude_left
+        self.amplitude_right = amplitude_right
+
+    def phase_lag(self):
+        """
+        return the phase lag between the two flagella
+        """
+        return np.abs(self.phase_left - self.phase_right)
+
+    def non_isochrony(self):
+        """
+        return the nonisochrony of both flagella
+        """
+
+        def non_isochrony_inner(phase, amplitude):
+            """
+            phase, amplitude are floats or numpy arrays of floats.              
+            return the nonisochrony
+            """
+            fit = misc.linear_fit(np.diff(phase), amplitude[1:] **2)
+            return fit[0][0]
+
+        ni_1 = non_isochrony_inner(self.phase_left, self.amplitude_left)
+        ni_2 = non_isochrony_inner(self.phase_right, self.amplitude_right)
+
+        return (ni_1, ni_2)
+
+
+
+if __name__ == '__main__':
+
+    chlamy = Chlamy(*np.loadtxt('positions')[:4])
+
+    with quick.Plot() as qp:
+        qp.plot(chlamy.phase_lag())
+        qp.set_xlabel('frame')
+        qp.set_ylabel(r'$\varphi_L = \varphi_R$')
+
+    print(chlamy.non_isochrony())
+#+END_SRC
+
+#+RESULTS:
+: (-8.8925194841562192, -5.9579175713523291)
+
+
+** when not to use a class
+
+   *Overengineering is dangerous!*
+
+Do not use classes if you don't have to.
+
+#+BEGIN_SRC python :results output
+  class TooSimple:
+
+      def __init__(self, data):
+          self.data = data
+
+      def call(self, value):
+          return self.data + value
+
+  ts = TooSimple(4)
+  print(ts.call(5))
+#+END_SRC
+
+#+RESULTS:
+: 9
+
+*** functional technique
+
+ Use functions instead. Functions are first class citizens of python!
+=> Function may be arguments to other functions as well as return
+values. They are treated as normal data objects.
+
+#+BEGIN_SRC python :results output
+def very_simple(data):
+    def call(value):
+        return data + value
+    return call
+
+ts = very_simple(4)
+print(ts(5))
+#+END_SRC
+
+#+RESULTS:
+: 9
+
+** when to use a class
+
+- having different functions that share the same data (see example)
+  *data encapsulation*
+- define programming interfaces explicitely
+  *be explicit*
+- allow for polymorphism: duck typing
+  *don't repeat yourself*
+- using patterns: for example facade: provide the same interface for
+  different things.
+
+#+BEGIN_SRC python :exports none
+  import sys
+  import multiprocessing import Pool
+
+
+  class CalcAssist:
+
+      def set_parameter(parameter):
+          pass
+
+      def __call__():
+          pass
+
+      def save_results(handle=sys.stdout):
+          pass
+
+
+  def parallelize(calc_assitent, parameters, processes=None):
+      """
+      calc_assistant: an instance of a class that has the same interface as CalcAssist.
+      parameters: a list of scalars. Each element is supplied to CalcAssist.__call__
+      processes: number of processes to spawn. Default is the number of parameters.
+
+      This function executes calc_assistent for all parameters in
+      parallel, printing the results to standard out.
+      """
+
+      if processes is None:
+          processes = len(parameters)
+      
+      def do_it(p):
+          calc_assistant.set_parameter(p)
+          calc_assistant()
+          return calc_assistant
+
+      with Pool(processes=processes) as pool:
+          for ca in pool.map(do_it, parameters):
+              ca.save_results()
+#+END_SRC
+
+
+* special methods
+
+programming language designers tend to provide the possibility to
+allow users to extent their code functionality in a way that *looks
+consistent* with the language itself.
+
+** =__plus__=, =__minus__=, =__call__=, =__index__=
+
+#+BEGIN_SRC python :results output
+  class Polynom:
+      """
+      represent polynoms that can be summed, negated and evaluated
+      """
+
+      def __init__(self, c, nx, ny, nz):
+          """
+          => c * (x ** nx) * (y ** ny) * (z ** nz)
+          ni being integers, please
+          """
+          self.intern = {}
+          if c != 0:
+              self.intern[(nx, ny, nz)] = c
+
+          
+      def add_term(self, c, nx, ny, nz):
+          """
+          add another term to the polynom
+          """
+          if (nx, ny, nz) in self.intern:
+              self.intern[(nx, ny, nz)] += c
+          else:
+              self.intern[(nx, ny, nz)] = c
+
+          
+      def __neg__(self):
+          pol = Polynom(0,0,0,0)
+          for (key, c) in self.intern.items():
+              pol.intern[key] = -c
+          return pol
+
+
+      def __add__(self, polynom):
+          pol = Polynom(0,0,0,0)
+          for ph in [self, polynom]:
+              for (nx, ny, nz) in ph.intern:
+                  pol.add_term(ph.intern[(nx, ny, nz)], nx, ny, nz)
+          return pol
+
+  
+      def __sub__(self, polynom):
+          return self + -polynom
+
+  
+      def __call__(self,x,y,z):
+          val = 0
+          for (nx,ny,nz) in self.intern:
+              h = self.intern[(nx,ny,nz)]
+              if nx > 0:
+                  h *= x**nx
+              if ny > 0:
+                  h *= y**ny
+              if nz > 0:
+                  h *= z**nz
+              val += h
+          return val
+
+
+      def __repr__(self):
+          h = ''
+          for (nx,ny,nz) in self.intern:
+              h += '{0}'.format(self.intern[(nx,ny,nz)])
+              for x in range(nx):
+                  h += 'x'
+              for y in range(ny):
+                  h += 'y'
+              for z in range(nz):
+                  h += 'z'
+              h = h+' + '
+          return h[:-3]
+
+
+  if __name__ == '__main__':
+
+      import numpy as np
+    
+      one = Polynom(1, 0, 0, 0)
+      x = Polynom(1, 1, 0, 0)
+      xxyzz = Polynom(1, 2, 1, 2)
+      xyz5 = Polynom(5, 1, 1, 1)
+      yy = Polynom(1, 0, 2, 0)
+
+      polynom_1 = one - xxyzz + (-yy)
+      polynom_2 = np.sum([-one, x, xyz5])
+
+      r = (2, 3, 4)
+      print('{0} = {1}'.format(polynom_1, polynom_1(*r)))
+      print('{0} = {1}'.format(polynom_2, polynom_2(*r)))
+#+END_SRC
+
+#+RESULTS:
+: 1x + -1yy + 5xyz + 1 + -1xxyzz = -78
+
+Another nice aspect about implemtenting those interfaces is that we
+are able to *reuse* function that just use those interfaces.
+
+** iterator: =__iter__=, =__next__=
+Consistent look
+#+BEGIN_SRC python
+for element in iterator:
+    do_something_with(element)
+#+END_SRC
+
+** context manager: =__enter__=, =__exit__=
+Encapsulate state
+#+BEGIN_SRC python
+with Context() as c:
+    do_something_with(c)
+#+END_SRC
+
+
+* meta technique
+
+meta programming allows the programmer to modify the internal
+structure of the language and to extent program code dynamically. This
+is closely related to *programmatically creating code*. In this way
+boilerplate code can be avoided, which helps fulfilling the pricinple
+to *never duplicate code*.
+
+Code may become very unreadable, this is ok for your own projects,
+nobody has to read, which is more likely the case for a
+scientist. Usually it is good practice to avoid metaprogramming.
+
+** everything is a dictionary
+
+this is why metaprogramming works so easily in python.
+
+*** getattr
+
+getattr allows us to dynamically generate methods.
+
+#+BEGIN_SRC python :results output
+  class Meta:
+      """
+      a class that when a method is called, returns the name and
+      the arguments of that call.
+      """
+      def __getattr__(self, name):
+          def internal_function(*args, **kwargs):
+              return (name, args, kwargs)
+          return internal_function
+
+  m = Meta()
+  print(dir(m))
+  print(m.called('bla'))
+#+END_SRC
+
+#+RESULTS:
+: ['__class__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattr__', '__getattribute__', '__gt__', '__hash__', '__init__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', '__weakref__']
+: ('called', ('bla',), {})
+
+
+* application
+
+I find Matplotlib is messy:
+There are two interfaces:
+- scripting (flawed because of state engine (global state!))
+- object oriented (flawed because class interfaces are much too broad)
+- there is a lot of redundance (do not duplicate code!)
+
+Encapsulate messy matplotlib into consistent context manager by using
+the dictionary structure of classes and modules and =__getattr_=.
+
+#+BEGIN_SRC python
+  import sys
+
+  class Plot(object):
+      """
+      this class mimics matplotlib's axis class. All its methods are
+      available.
+      Additionally, the with construction can be used.
+      """
+
+      def __init__(self, filename=None, figsize=(3, 3), grid=True, **kwargs):
+          """ initialize an axes object """
+          import matplotlib.pyplot as plt
+          self.plt = plt
+          self.filename = filename
+          self.fig = plt.figure(figsize=figsize)
+          self.axe = plt.subplot(111, **kwargs)
+          self.axe.grid(grid)
+
+      def __enter__(self):
+          """ assign the return value to the with target """
+          return self
+
+      def __exit__(self, type, value, traceback):
+          """
+          since this class is not made for exception handling, but for
+          plotting, we do not use the arguments to the method.
+          """
+          import matplotlib as mlib
+          mlib.rcParams['text.latex.preamble'].append(r'\usepackage{amsmath}')
+          mlib.rcParams['text.latex.preamble'].append(r'\usepackage{amssymb}')
+          mlib.rc('text', usetex=True)
+
+          if self.filename is not None:
+              self.fig.savefig(self.filename, bbox_inches='tight')
+          else:
+              self.plt.show()
+
+          self.plt.close(fig)
+
+      def __getattr__(self, name):
+          """ this object should act like a matplotlib axis object """
+          res = None
+          try:
+              res = getattr(self.axe, name)
+          except:
+              res = getattr(self.plt, name)
+          return res
+
+
+
+  class WithEncapsulate(object):
+      """
+      All locals of this class will be transferred to the module's namespace,
+      because then, the __getattr__ method can be used for creating methods at
+      runtime, which later leads the creation of module functions at runtime.
+      """
+
+      def __init__(self, classconstructor, argname):
+          """
+          save a classconstructor, whose class will be instantiated constantly.
+          classconstructor is instantiated with exactly one argument.
+          for each function call, that one argument may be provided by an
+          optional argument, its default value is None.
+          """
+          self.classconstructor = classconstructor
+          self.argname = argname
+
+      def __getattr__(self, name):
+          """ make methods of QuickPlot available as method of this wrapper """
+          if name == self.classconstructor.__name__:
+              return self.classconstructor
+          def hfunc(*args, **kwargs):
+              value = None
+              if self.argname in kwargs:
+                  value = kwargs[self.argname]
+                  del kwargs[self.argname]
+              with self.classconstructor(value) as plt:
+                  getattr(plt, name)(*args, **kwargs)
+          return hfunc
+
+  ### release Plot and all the matplotlib axis methods as functions.
+  sys.modules[__name__] = WithEncapsulate(Plot, 'filename')
+#+END_SRC
+
+Let's use it...
+
+#+BEGIN_SRC python
+  import numpy as np
+  import quick
+  import velocityfield as vf
+  import misc
+
+
+  oseen_xy = lambda x, y: vf.oseentensor([x, y, 1])
+  grid = np.linspace(-4, 4, 100)
+
+  oseens = np.array([[oseen_xy(x, y) for x in grid] for y in grid])
+  oseens = np.concatenate([oseens[:, :, i, j] for (i, j) in [(0, 1), (1, 2)]],
+                          axis=1)
+
+
+  quick.imshow(oseens)
+
+  with quick.Plot() as qp:
+
+      qp.remove_border()
+      qp.set_xlabel(r'$x$')
+      qp.set_ylabel(r'$y$')
+      qp.imshow(oseens, 'BrBG')
+      qp.colorbar(oseens, 'BrBG')
+
+#+END_SRC
+
+#+RESULTS:
+: None
+
+
+* principles
+
+** the ones I used
+
+- write content and logic only once
+- be consistent, least surprise
+- avoid global state
+- write modular code (only possible with little global state)
+
+** Zen of python
+
+#+BEGIN_SRC python :results output
+  import this
+#+END_SRC
+
+#+RESULTS:
+
+The Zen of Python, by Tim Peters
+
+- Beautiful is better than ugly.
+- Explicit is better than implicit.
+- Simple is better than complex.
+- Complex is better than complicated.
+- Flat is better than nested.
+- Sparse is better than dense.
+- Readability counts.
+- Special cases aren't special enough to break the rules.
+- Although practicality beats purity.
+- Errors should never pass silently.
+- Unless explicitly silenced.
+- In the face of ambiguity, refuse the temptation to guess.
+- There should be one-- and preferably only one --obvious way to do it.
+- Although that way may not be obvious at first unless you're Dutch.
+- Now is better than never.
+- Although never is often better than *right* now.
+- If the implementation is hard to explain, it's a bad idea.
+- If the implementation is easy to explain, it may be a good idea.
+- Namespaces are one honking great idea -- let's do more of those!
+
+** The art of Unix programming
+
+[[https://en.wikipedia.org/wiki/Unix_philosophy]]
+
+- Rule of Modularity
+- Rule of Clarity
+- Rule of Composition
+- Rule of Separation
+- Rule of Simplicity
+- Rule of Parsimony
+- Rule of Transparency
+- Rule of Robustness
+- Rule of Representation
+- Rule of Least Surprise
+- Rule of Silence
+- Rule of Repair
+- Rule of Economy
+- Rule of Generation
+- Rule of Optimization
+- Rule of Diversity
+- Rule of Extensibility
+** Design patterns
+
+For fulfilling some of the principles mentioned above, design patterns
+were developed. Most of them are made for older Versions of static
+languages like Java and are obsolete in modern Python. They usually
+emphasise flexibility of program structures in the way, such that
+programs or libraries are hard to be misused, but easily extended,
+without interfering with already existing code.
+
+Interfaces are made very explicite and communication between
+developers is eased, but only when all developers are familiar with
+the concept. Independent working of many people on the same projects
+shall be facilitated.
