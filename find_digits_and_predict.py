@@ -6,7 +6,7 @@ from skimage.measure import regionprops
 
 def show_prediction_result(image, label_image, clf):
     size = (8, 8)
-    plt.figure(figsize=(20, 10))
+    plt.figure(figsize=(15, 10))
     plt.imshow(image, cmap='gray_r')
     candidates = []
     predictions = []
