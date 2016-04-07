@@ -1,7 +1,3 @@
-Andre Scholich
-last updated: 2016-04-07
-<style type=”text/css”>p span.displaynone { display:none; }</style>
-
 # Overview
 
 You can find Rabea's introduction notebook here: [Introduction to python and jupyter](http://nbviewer.jupyter.org/github/scholich/python-overview/blob/master/Python_introduction.ipynb).
