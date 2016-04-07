@@ -7,6 +7,6 @@ that is also contained in this repository. You can download and run/execute it o
 
 Also, there is a list of [Useful libraries for data science in Python](python_data_libraries.md).
 
-You may also find an [introductory example]((http://nbviewer.jupyter.org/github/scholich/python-overview/blob/master/find_digits_and_predict.ipynb)) to scikit-image and scikit-learn.
+You may also find an [introductory example](http://nbviewer.jupyter.org/github/scholich/python-overview/blob/master/find_digits_and_predict.ipynb) to scikit-image and scikit-learn.
 
 If you need help setting something up or have other questions or suggestions, feel free to send me an [email](mailto:scholich@pks.mpg.de).
