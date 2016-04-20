@@ -7,7 +7,7 @@ that is also contained in this repository. You can download and run/execute it o
 
 Also, there is a list of [Useful libraries for data science in Python](python_data_libraries.md).
 
-You may also find an [introductory example](http://nbviewer.jupyter.org/github/scholich/python-overview/blob/master/find_digits_and_predict.ipynb) to scikit-image and scikit-learn.
+You may also find an introductory example [recognizing handwritten digits](http://nbviewer.jupyter.org/github/scholich/python-overview/blob/master/find_digits_and_predict.ipynb) using scikit-image and scikit-learn.
 
 Marko Popovich provided a notebook with an [introduction to pandas](http://nbviewer.jupyter.org/github/scholich/python-overview/blob/master/pandas_introduction.ipynb).
 
