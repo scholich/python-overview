@@ -11,6 +11,6 @@ You may also find an introductory example [recognizing handwritten digits](http:
 
 Marko Popovich provided a notebook with an [introduction to pandas](http://nbviewer.jupyter.org/github/scholich/python-overview/blob/master/pandas_introduction.ipynb).
 
-There is also a [notebook](http://nbviewer.jupyter.org/github/scholich/python-overview/blob/master/performance_strategies.ipynb) explaining how to speed-up parts of python code using Numba, Cython or parallel strategies.
+There is also a notebook explaining how to [speed-up parts of python code](http://nbviewer.jupyter.org/github/scholich/python-overview/blob/master/performance_strategies.ipynb)   using Numba, Cython or parallel strategies.
 
 If you need help setting something up or have other questions or suggestions, feel free to send me an [email](mailto:scholich@pks.mpg.de).
