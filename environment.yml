@@ -22,5 +22,5 @@ dependencies:
 - traitsui=4.4.0=py27_0
 - vtk=5.10.1=py27_0
 - wheel=0.29.0=py27_0
-- zlib=1.2.8=vc9_3
+- zlib=1.2.8
 
