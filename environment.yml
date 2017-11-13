@@ -7,7 +7,6 @@ dependencies:
 - libpng=1.6.17
 - libtiff=4.0.6
 - mayavi=4.4.0=np19py27_0
-- mkl=11.3.3=1
 - numpy=1.9.3=py27_3
 - openssl=1.0.2h
 - pip=8.1.1=py27_1
