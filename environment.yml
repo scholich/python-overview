@@ -1,6 +1,5 @@
 name: mayavi_test
 dependencies:
-- mayavi
 - numpy
 - python=2.7
 - seaborn
@@ -8,6 +7,3 @@ dependencies:
 - scipy
 - scikit-learn
 - scikit-image
-- notebook
-- widgetsnbextension
-- jupyter
