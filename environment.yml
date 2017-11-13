@@ -10,3 +10,4 @@ dependencies:
 - scikit-image
 - notebook
 - widgetsnbextension
+- jupyter
