@@ -1,25 +1,11 @@
 name: mayavi_test
 dependencies:
-- apptools
-- configobj
-- envisage
-- jpeg
-- libpng
-- libtiff
 - mayavi
 - numpy
-- openssl
-- pip
-- pyface
 - python=2.7
-- pyqt
-- qt
-- setuptools
-- sip
-- six
-- traits
-- traitsui
-- vtk
-- wheel
-- zlib
+- seaborn
+- pandas
+- scipy
+- scikit-learn
+- scikit-image
 
