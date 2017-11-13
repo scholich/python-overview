@@ -8,4 +8,5 @@ dependencies:
 - scipy
 - scikit-learn
 - scikit-image
+- notebook
 - widgetsnbextension
