@@ -1,6 +1,7 @@
 import matplotlib.patches as mpatches
 from pylab import plt, np
-from scipy.misc import imresize
+from skimage.transform import resize as imresize
+#from scipy.misc import imresize
 from skimage.measure import regionprops
 
 
